@@ -1,0 +1,38 @@
+<div class="container">
+  <h1>{{ isEditMode ? 'Editar Cliente' : 'Novo Cliente' }}</h1>
+
+  <form [formGroup]="clienteForm" (ngSubmit)="onSave()" class="form-container">
+    
+    <div class="form-group">
+      <label for="nome">Nome</label>
+      <input id="nome" type="text" formControlName="nome">
+      <div *ngIf="clienteForm.get('nome')?.invalid && clienteForm.get('nome')?.touched" class="error-message">
+        Nome é obrigatório.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email">
+      <div *ngIf="clienteForm.get('email')?.errors?.['required'] && clienteForm.get('email')?.touched" class="error-message">
+        Email é obrigatório.
+      </div>
+      <div *ngIf="clienteForm.get('email')?.errors?.['email'] && clienteForm.get('email')?.touched" class="error-message">
+        Formato de email inválido.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="cpf">CPF</label>
+      <input id="cpf" type="text" formControlName="cpf" placeholder="Formato livre">
+       <div *ngIf="clienteForm.get('cpf')?.invalid && clienteForm.get('cpf')?.touched" class="error-message">
+        CPF é obrigatório.
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="clienteForm.invalid">Salvar</button>
+      <a routerLink="/clientes" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+</div>

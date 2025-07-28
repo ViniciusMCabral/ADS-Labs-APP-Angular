@@ -1,0 +1,28 @@
+<div class="container">
+  <h1>Histórico de Pedidos</h1>
+
+  <a routerLink="/pedidos/novo" class="btn btn-primary">Novo Pedido</a>
+
+  <div class="card-list-container" *ngIf="pedidos.length > 0">
+    <div class="item-card" *ngFor="let pedido of pedidos">
+      <div class="card-content">
+        <p><strong>ID do Pedido:</strong> {{ pedido.id }}</p>
+        <p><strong>Cliente:</strong> {{ pedido.cliente?.nome || 'Cliente não encontrado' }}</p>
+        <p><strong>Itens:</strong></p>
+        <ul>
+          <li *ngFor="let item of pedido.pratos">       
+            {{ $any(item).PedidoPrato?.quantidade }}x {{ $any(item).nome }}
+          </li>
+        </ul>
+      </div>
+      <div class="card-actions">
+        <a [routerLink]="['/pedidos/editar', pedido.id]" class="btn btn-secondary">Editar</a>
+        <button (click)="deletePedido(pedido.id)" class="btn btn-warn">Remover</button>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="pedidos.length === 0" class="empty-message">
+    <p>Nenhum pedido realizado.</p>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="container">
+  <h1>{{ isEditMode ? 'Editar Prato' : 'Novo Prato' }}</h1>
+
+  <form [formGroup]="pratoForm" (ngSubmit)="onSave()" class="form-container">
+    
+    <div class="form-group">
+      <label for="nome">Nome do Prato</label>
+      <input id="nome" type="text" formControlName="nome">
+      <div *ngIf="pratoForm.get('nome')?.invalid && pratoForm.get('nome')?.touched" class="error-message">
+        Nome é obrigatório.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="preco">Preço</label>
+      <input id="preco" type="number" formControlName="preco" placeholder="Ex: 25.50">
+      <div *ngIf="pratoForm.get('preco')?.errors?.['required'] && pratoForm.get('preco')?.touched" class="error-message">
+        Preço é obrigatório.
+      </div>
+      <div *ngIf="pratoForm.get('preco')?.errors?.['min'] && pratoForm.get('preco')?.touched" class="error-message">
+        O preço deve ser um número positivo.
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="pratoForm.invalid">Salvar</button>
+      <a routerLink="/pratos" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+</div>

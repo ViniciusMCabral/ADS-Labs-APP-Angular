@@ -1,0 +1,27 @@
+<div class="container">
+  <h1>Clientes</h1>
+
+  <a routerLink="/clientes/novo" class="btn btn-primary">Novo Cliente</a>
+
+  <div class="card-list-container" *ngIf="clientes.length > 0">
+    
+    <div class="item-card" *ngFor="let cliente of clientes">
+      
+      <div class="card-content">
+        <p><strong>Nome:</strong> {{ cliente.nome }}</p>
+        <p><strong>Email:</strong> {{ cliente.email }}</p>
+        <p><strong>CPF:</strong> {{ cliente.cpf }}</p>
+      </div>
+      
+      <div class="card-actions">
+        <a [routerLink]="['/clientes/editar', cliente.id]" class="btn btn-secondary">Editar</a>
+        <button (click)="deleteCliente(cliente.id)" class="btn btn-warn">Remover</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="clientes.length === 0" class="empty-message">
+    <p>Nenhum cliente cadastrado.</p>
+  </div>
+</div>

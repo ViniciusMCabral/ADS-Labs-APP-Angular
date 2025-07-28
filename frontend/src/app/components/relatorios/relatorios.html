@@ -1,0 +1,18 @@
+<div class="container">
+  <h1>Relatórios</h1>
+
+  <div class="report-section">
+    <h2>Top 5 Clientes com Mais Pedidos</h2>
+    <pre>{{ topClientesPedidos$ | async | json }}</pre>
+  </div>
+
+  <div class="report-section">
+    <h2>Top 5 Clientes com Maiores Gastos</h2>
+    <pre>{{ topClientesGastos$ | async | json }}</pre>
+  </div>
+
+  <div class="report-section">
+    <h2>Pratos Mais Pedidos</h2>
+    <pre>{{ topPratosPedidos$ | async | json }}</pre>
+  </div>
+</div>

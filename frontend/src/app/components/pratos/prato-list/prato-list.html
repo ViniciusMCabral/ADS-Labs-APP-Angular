@@ -1,0 +1,26 @@
+<div class="container">
+  <h1>Pratos do Cardápio</h1>
+
+  <a routerLink="/pratos/novo" class="btn btn-primary">Novo Prato</a>
+
+  <div class="card-list-container" *ngIf="pratos.length > 0">
+    
+    <div class="item-card" *ngFor="let prato of pratos">
+      
+      <div class="card-content">
+        <p><strong>Nome:</strong> {{ prato.nome }}</p>
+        <p><strong>Preço:</strong> {{ prato.preco | currency:'BRL' }}</p>
+      </div>
+      
+      <div class="card-actions">
+        <a [routerLink]="['/pratos/editar', prato.id]" class="btn btn-secondary">Editar</a>
+        <button (click)="deletePrato(prato.id)" class="btn btn-warn">Remover</button>
+      </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="pratos.length === 0" class="empty-message">
+    <p>Nenhum prato cadastrado.</p>
+  </div>
+</div>

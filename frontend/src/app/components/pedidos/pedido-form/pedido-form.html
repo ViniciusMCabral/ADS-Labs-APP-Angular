@@ -1,0 +1,41 @@
+<div class="container">
+  <h1>Novo Pedido</h1>
+
+  <form [formGroup]="pedidoForm" (ngSubmit)="onSave()" class="form-container">
+    
+    <div class="form-group">
+      <label for="clienteId">Selecione o Cliente</label>
+      <select id="clienteId" formControlName="clienteId">
+        <option value="" disabled>-- Escolha um cliente --</option>
+        <option *ngFor="let cliente of clientes" [value]="cliente.id">{{ cliente.nome }}</option>
+      </select>
+    </div>
+
+    <hr>
+    <h2>Pratos do Pedido</h2>
+    
+    <div formArrayName="pratos">
+      <div *ngFor="let pratoGroup of pratos.controls; let i = index" [formGroupName]="i" class="prato-item">
+        <div class="form-group">
+          <label for="pratoId-{{i}}">Prato</label>
+          <select id="pratoId-{{i}}" formControlName="pratoId">
+            <option value="" disabled>-- Escolha um prato --</option>
+            <option *ngFor="let prato of allPratos" [value]="prato.id">{{ prato.nome }} - {{ prato.preco | currency:'BRL' }}</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="quantidade-{{i}}">Quantidade</label>
+          <input id="quantidade-{{i}}" type="number" formControlName="quantidade">
+        </div>
+        <button type="button" (click)="removePrato(i)" class="btn btn-warn">Remover Prato</button>
+      </div>
+    </div>
+    
+    <button type="button" (click)="addPrato()" class="btn btn-secondary">Adicionar Outro Prato</button>
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary" [disabled]="pedidoForm.invalid">Finalizar Pedido</button>
+      <a routerLink="/pedidos" class="btn btn-secondary">Cancelar</a>
+    </div>
+  </form>
+</div>

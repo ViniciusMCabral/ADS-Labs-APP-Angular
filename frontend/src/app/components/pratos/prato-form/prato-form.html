@@ -13,7 +13,7 @@
 
     <div class="form-group">
       <label for="preco">Preço</label>
-      <input id="preco" type="number" formControlName="preco" placeholder="Ex: 25.50">
+      <input id="preco" type="number" formControlName="preco" placeholder="Ex: 25.00">
       <div *ngIf="pratoForm.get('preco')?.errors?.['required'] && pratoForm.get('preco')?.touched" class="error-message">
         Preço é obrigatório.
       </div>

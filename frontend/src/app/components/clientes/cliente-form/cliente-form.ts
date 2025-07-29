@@ -53,30 +53,36 @@ export class ClienteFormComponent implements OnInit {
   }
 
   onSave(): void {
-    if (this.clienteForm.invalid) {
-      return;
-    }
-
-    const formValue = this.clienteForm.value;
-    const operation = this.isEditMode
-      ? this.clienteService.updateCliente(this.clienteId!, formValue)
-      : this.clienteService.createCliente(formValue);
-
-    operation.subscribe({
-      next: () => {
-        alert(this.isEditMode ? 'Cliente atualizado com sucesso!' : 'Cliente criado com sucesso!');
-        this.router.navigate(['/clientes']);
-      },
-      error: (err) => {
-        console.error("Erro ao salvar cliente:", err);
-
-        if (err.error && typeof err.error.message === 'string' && err.error.message.toLowerCase().includes('cpf')) {
-          alert('CPF inválido ou já cadastrado. Por favor, verifique o valor inserido.');
-        } 
-        else {
-          alert('Ocorreu um erro inesperado ao salvar. Tente novamente.');
-        }
-      }
-    });
+  if (this.clienteForm.invalid) {
+    return;
   }
+
+  const rawCpf: string = this.clienteForm.get('cpf')?.value || '';
+  const cpfNormalizado = rawCpf.replace(/\D/g, '');
+
+  this.clienteForm.get('cpf')?.setValue(cpfNormalizado);
+
+  const formValue = this.clienteForm.value;
+
+  const operation = this.isEditMode
+    ? this.clienteService.updateCliente(this.clienteId!, formValue)
+    : this.clienteService.createCliente(formValue);
+
+  operation.subscribe({
+    next: () => {
+      alert(this.isEditMode ? 'Cliente atualizado com sucesso!' : 'Cliente criado com sucesso!');
+      this.router.navigate(['/clientes']);
+    },
+    error: (err) => {
+      console.error("Erro ao salvar cliente:", err);
+
+      if (err.error && typeof err.error.message === 'string' && err.error.message.toLowerCase().includes('cpf')) {
+        alert('CPF inválido ou já cadastrado. Por favor, verifique o valor inserido.');
+      } 
+      else {
+        alert('Ocorreu um erro inesperado ao salvar. Tente novamente.');
+      }
+    }
+  });
+}
 }

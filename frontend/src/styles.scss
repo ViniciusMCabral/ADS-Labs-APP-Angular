@@ -2,15 +2,19 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   margin: 0;
   padding: 0;
-  background-color: #1a1a1a; 
-  color: #000000; 
+  background-image: url("./assets/5adc538b-c0f7-476d-bd94-8cd62a995a2b.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  color: #000000;
   line-height: 1.6;
 }
 
 .container {
   max-width: 900px;
   margin: auto;
-  background: #ffffff; 
+  background: rgba(255, 255, 255, 0.96); 
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0,0,0,0.2);
@@ -48,11 +52,11 @@ h1, h2 {
 }
 
 .btn-secondary {
-  background-color: #3498db;
-  color: white;
+  background-color: #e0e0e0;
+  color: #333;
 }
 .btn-secondary:hover {
-  background-color: #2980b9;
+  background-color: #bdbdbd;
 }
 
 table {
@@ -167,17 +171,23 @@ th {
 }
 
 @media (max-width: 600px) {
-  .btn {
-    width: 100%;
-    margin-bottom: 0.5rem;
-  }
-
   .form-group input {
     font-size: 1rem;
   }
 
+  .btn,
+  .btn-primary,
+  .btn-warn,
+  .btn-secondary {
+    display: block;       
+    width: 100%;          
+    margin: 0 0 0.5rem 0;   
+    padding: 10px 0;       
+    text-align: center;    
+    font-size: 1rem;
+  }
+
   .card-actions {
-    flex-direction: column;
-    align-items: flex-end;
+    display: block;        
   }
 }

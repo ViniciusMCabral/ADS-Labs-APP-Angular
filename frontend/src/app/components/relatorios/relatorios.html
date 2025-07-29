@@ -1,7 +1,6 @@
 <div class="container">
   <h1>Relatórios</h1>
 
-  <!-- Top 5 Clientes com Mais Pedidos -->
   <div class="report-section" *ngIf="topClientesPedidos$ | async as clientesPedidos">
     <h2>Top 5 Clientes com Mais Pedidos</h2>
     <table *ngIf="(clientesPedidos?.length || 0) > 0; else noPedidos">
@@ -23,7 +22,6 @@
     </ng-template>
   </div>
 
-  <!-- Top 5 Clientes com Maiores Gastos -->
   <div class="report-section" *ngIf="topClientesGastos$ | async as clientesGastos">
     <h2>Top 5 Clientes com Maiores Gastos</h2>
     <table *ngIf="(clientesGastos?.length ?? 0) > 0; else noGastos">
@@ -45,7 +43,6 @@
     </ng-template>
   </div>
 
-  <!-- Pratos Mais Pedidos -->
   <div class="report-section" *ngIf="topPratosPedidos$ | async as pratosPedidos">
     <h2>Pratos Mais Pedidos</h2>
     <table *ngIf="(pratosPedidos?.length ?? 0) > 0; else noPratos">

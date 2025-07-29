@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Prato } from '../models/prato';
+import { RespostaComDados } from '../models/resposta-com-dados';
 
 @Injectable({
   providedIn: 'root'
@@ -32,7 +33,7 @@ export class PratoService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  getPratosComMaisPedidos(): Observable<Prato[]> {
-    return this.http.get<Prato[]>(`${this.apiUrl}/com-mais-pedidos`);
+  getPratosComMaisPedidos(): Observable<RespostaComDados<Prato>> {
+    return this.http.get<RespostaComDados<Prato>>(`${this.apiUrl}/com-mais-pedidos`);
   }
 }

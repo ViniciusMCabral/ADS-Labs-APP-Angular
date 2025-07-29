@@ -1,18 +1,71 @@
 <div class="container">
   <h1>Relatórios</h1>
 
-  <div class="report-section">
+  <!-- Top 5 Clientes com Mais Pedidos -->
+  <div class="report-section" *ngIf="topClientesPedidos$ | async as clientesPedidos">
     <h2>Top 5 Clientes com Mais Pedidos</h2>
-    <pre>{{ topClientesPedidos$ | async | json }}</pre>
+    <table *ngIf="(clientesPedidos?.length || 0) > 0; else noPedidos">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Total de Pedidos</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientesPedidos">
+          <td>{{ cliente.nome }}</td>
+          <td>{{ cliente.totalPedidos }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #noPedidos>
+      <p class="empty-message">Nenhum dado encontrado.</p>
+    </ng-template>
   </div>
 
-  <div class="report-section">
+  <!-- Top 5 Clientes com Maiores Gastos -->
+  <div class="report-section" *ngIf="topClientesGastos$ | async as clientesGastos">
     <h2>Top 5 Clientes com Maiores Gastos</h2>
-    <pre>{{ topClientesGastos$ | async | json }}</pre>
+    <table *ngIf="(clientesGastos?.length ?? 0) > 0; else noGastos">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Total Gasto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of clientesGastos">
+          <td>{{ cliente.nome }}</td>
+          <td>R$ {{ cliente.totalGasto | number: '1.2-2' }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #noGastos>
+      <p class="empty-message">Nenhum dado encontrado.</p>
+    </ng-template>
   </div>
 
-  <div class="report-section">
+  <!-- Pratos Mais Pedidos -->
+  <div class="report-section" *ngIf="topPratosPedidos$ | async as pratosPedidos">
     <h2>Pratos Mais Pedidos</h2>
-    <pre>{{ topPratosPedidos$ | async | json }}</pre>
+    <table *ngIf="(pratosPedidos?.length ?? 0) > 0; else noPratos">
+      <thead>
+        <tr>
+          <th>Nome do Prato</th>
+          <th>Preço</th>
+          <th>Total Vendido</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let prato of pratosPedidos">
+          <td>{{ prato.nome }}</td>
+          <td>R$ {{ prato.preco }}</td>
+          <td>{{ prato.totalVendido }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <ng-template #noPratos>
+      <p class="empty-message">Nenhum prato encontrado.</p>
+    </ng-template>
   </div>
 </div>

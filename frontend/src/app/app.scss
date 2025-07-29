@@ -1,8 +1,8 @@
 .top-nav {
-  background-color: #212529; 
-  color: white;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  position: sticky; 
+  background-color: #121212; 
+  color: #f1f1f1;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  position: sticky;
   top: 0;
   z-index: 1000;
 }
@@ -18,7 +18,7 @@
 .nav-brand {
   font-size: 1.5rem;
   font-weight: bold;
-  color: white;
+  color: #f9f9f9;
   text-decoration: none;
 }
 
@@ -28,22 +28,23 @@
 }
 
 .nav-links a {
-  color: white;
+  color: #cccccc;
   text-decoration: none;
   font-size: 1rem;
   padding: 0.5rem 0;
   border-bottom: 2px solid transparent;
-  transition: border-bottom-color 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
 .nav-links a:hover {
-  border-bottom-color: rgba(255, 255, 255, 0.7);
+  color: white;
+  border-bottom-color: white;
 }
 
-
 .nav-links a.active-link {
-  border-bottom-color: white;
+  border-bottom-color: #02b202; 
   font-weight: bold;
+  color: #ffffff;
 }
 
 .main-content {

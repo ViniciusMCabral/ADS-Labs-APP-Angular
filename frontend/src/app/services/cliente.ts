@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cliente } from '../models/cliente';
 import { environment } from '../../environments/environment';
+import { RespostaComDados } from '../models/resposta-com-dados';
 
 @Injectable({
   providedIn: 'root'
@@ -32,11 +33,11 @@ export class ClienteService {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  getClientesComMaisPedidos(): Observable<Cliente[]> {
-    return this.http.get<Cliente[]>(`${this.apiUrl}/com-mais-pedidos`);
+  getClientesComMaisPedidos(): Observable<RespostaComDados<Cliente>> {
+    return this.http.get<RespostaComDados<Cliente>>(`${this.apiUrl}/com-mais-pedidos`);
   }
 
-  getClientesComMaisGastos(): Observable<Cliente[]> {
-    return this.http.get<Cliente[]>(`${this.apiUrl}/com-mais-gastos`);
+  getClientesComMaisGastos(): Observable<RespostaComDados<Cliente>> {
+    return this.http.get<RespostaComDados<Cliente>>(`${this.apiUrl}/com-mais-gastos`);
   }
 }
